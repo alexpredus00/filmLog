@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Film Log</h1>
+        <form id="addMovieForm">
+            <input type="text" id="addMovieInput" placeholder="What have you watched recently?"/>
+            <input type="submit" id="addMovieSubmit" value="Log Movie"/>
+        </form>
+        <form id="addMovieInfo">
+            <input type="text" id="addMovieDirector" placeholder="Director"/>
+            <input type="text" id="addMovieYear" placeholder="Year"/>
+            <label class="container">Watched
+                <input type="checkbox" id="addMovieWatched">
+                <span class="checkmark"></span>
+              </label>
+        </form>
+    </header>
+
+    <main>
+        <section class="movieList">
+            <h2>Films</h2>
+            <div id="movies">
+                <!-- <div class="movie">
+                    <div class="movieTop">
+                        <div class="content">
+                            <input type="text" id="inputTitle" class="text" value="Grand Budapest Hotel" readonly/>
+                        </div>
+                        <div class="actions">
+                            <button class="watched">Watched</button>
+                            <button id='deleteBtn' class="delete">Delete</button>
+                        </div>
+                    </div>
+                    <div class="movieBottom">
+                        <input type="text" id="inputDirectorYear" class="text" value="Wes Anderson, 2014" readonly/>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
