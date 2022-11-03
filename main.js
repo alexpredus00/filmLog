@@ -1,23 +1,11 @@
-
-
 const input = document.querySelector('#addMovieInput');
 const form2 = document.querySelector('addMovieInfo');
-
-
-
-
-
 
 const addMovieSubmit = document.querySelector('#addMovieForm');
 addMovieSubmit.addEventListener('submit', (e) => {
     e.preventDefault();
-
-
     addFilm();
-
 })
-
-
 
 class Film {
     constructor(title, director, year, watched){
@@ -36,9 +24,11 @@ function addFilm() {
     const addMovieDirector = document.querySelector('#addMovieDirector');
     const addMovieYear = document.querySelector('#addMovieYear');
     const addMovieWatched = document.querySelector('#addMovieWatched');
-    newFilm = new Film(addMovieName.value, addMovieDirector.value, addMovieYear.value, addMovieWatched.value);
+
+    newFilm = new Film(addMovieName.value, addMovieDirector.value, addMovieYear.value, addMovieWatched.checked);
     filmLog.push(newFilm);
-    console.log(filmLog);
+
+    saveData()
     render(); 
 }
 
@@ -49,7 +39,6 @@ function render() {
     movies.forEach(film => display.removeChild(film));
 
     for(let i=0; i<filmLog.length; i++){
-        console.log(filmLog[i]);
         createFilm(filmLog[i]);
     };
 };
@@ -82,13 +71,20 @@ function createFilm(Film) {
     movieTop.appendChild(actions);
 
     movieBottom.classList.add('movieBottom');
-    //movieBottom.textContent = "Made by " + Film.director + " in " + Film.year;
     movieDiv.appendChild(movieBottom);
 
     movieDetails.type = "text";
     movieDetails.classList.add('text');
     movieDetails.setAttribute('id', 'inputDirectorYear');
-    movieDetails.value = "Made by " + Film.director + " in " + Film.year;
+
+    if(Film.director && Film.year){
+        movieDetails.value = "Made by " + Film.director + " in " + Film.year;
+    } else if(Film.director && Film.year == ''){
+        movieDetails.value = "Made by " + Film.director;
+    } else if(Film.director == '' && Film.year){
+        movieDetails.value = "Made in " + Film.year;
+    }
+
     movieDetails.setAttribute('readonly', 'readonly');
     movieBottom.appendChild(movieDetails);
 
@@ -97,9 +93,10 @@ function createFilm(Film) {
     actions.appendChild(watchedBtn);
 
     if(Film.watched == false) {
-        console.log('watched = false !!!');
+        watchedBtn.textContent = "YET TO SEE";
+        movieDiv.style.backgroundColor = 'var(--darker)';
     } else {
-        console.log('watched = true !!!');
+        watchedBtn.textContent = "WATCHED";
     }
 
     deleteBtn.textContent = 'Delete';
@@ -109,20 +106,37 @@ function createFilm(Film) {
 
     movies.appendChild(movieDiv);
 
+    // delete button code
     deleteBtn.addEventListener('click', () => {
         filmLog.splice(filmLog.indexOf(Film), 1);
+        saveData();
         render();
     });
 
+    // Watched button toggle
     watchedBtn.addEventListener('click', () => {
         Film.watched = !Film.watched;
+        saveData();
         render();
     });
 };
 
 
+function saveData() {
+    localStorage.setItem('filmLog', JSON.stringify(filmLog));
+};
 
+function restore() {
+    if(!localStorage.filmLog) {
+        render();
+    } else {
+        let objects = localStorage.getItem('filmLog');
+        objects = JSON.parse(objects);
+        filmLog = objects;
+        render();
+    }
+}
     
-    
+restore();
 
 

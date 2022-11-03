@@ -1,3 +1,3 @@
-A website for logging the movies you have watched. 
+A website for logging the movies you have watched. The movies are saved in local storage, you have the options to toggle the watched status or delete the movie from the list.
 
-Made using HTML, CSS and JavaScript. The main objective was to solidify my understanding of objects in Javascript.
+The main objective of this website was to solidify my understanding of objects in Javascript.
