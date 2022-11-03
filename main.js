@@ -1,11 +1,10 @@
-const input = document.querySelector('#addMovieInput');
-const form2 = document.querySelector('addMovieInfo');
-
 const addMovieSubmit = document.querySelector('#addMovieForm');
 addMovieSubmit.addEventListener('submit', (e) => {
     e.preventDefault();
     addFilm();
 })
+
+
 
 class Film {
     constructor(title, director, year, watched){
@@ -27,6 +26,8 @@ function addFilm() {
 
     newFilm = new Film(addMovieName.value, addMovieDirector.value, addMovieYear.value, addMovieWatched.checked);
     filmLog.push(newFilm);
+
+    addMovieName.value = ''; addMovieDirector.value = ''; addMovieYear.value = '';  // clear forms after submit
 
     saveData()
     render(); 
