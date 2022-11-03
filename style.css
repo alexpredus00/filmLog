@@ -191,7 +191,7 @@ main {
 
 #addMovieDirector::placeholder {
     color: var(--gray);
-}
+} 
 
 #addMovieYear {
     color: white;
